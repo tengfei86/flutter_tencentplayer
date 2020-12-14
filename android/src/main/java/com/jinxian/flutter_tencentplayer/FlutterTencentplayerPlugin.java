@@ -195,11 +195,15 @@ public class FlutterTencentplayerPlugin implements MethodCallHandler {
                     String urlOrPath = call.argument("uri").toString();
 
                     if (!urlOrPath.startsWith("http")) {
+			try {
                         // file
                         MediaMetadataRetriever retr = new MediaMetadataRetriever();
                         retr.setDataSource(urlOrPath);
                         String rotation = retr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
                         degree = Integer.parseInt(rotation);
+			} catch(Exception e) {
+		          	
+			}
                     }
 
                     mVodPlayer.startPlay(urlOrPath);
