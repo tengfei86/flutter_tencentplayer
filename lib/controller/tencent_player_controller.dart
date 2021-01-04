@@ -61,6 +61,7 @@ class TencentPlayerController extends ValueNotifier<TencentPlayerValue> {
         return;
       }
       final Map<dynamic, dynamic> map = event;
+      if (value != null) {
       switch (map['event']) {
         case 'initialized':
           value = value?.copyWith(
@@ -100,6 +101,7 @@ class TencentPlayerController extends ValueNotifier<TencentPlayerValue> {
         case 'orientation':
           value = value?.copyWith(orientation: map['orientation']);
           break;
+      }
       }
     }
 
