@@ -63,7 +63,7 @@ class TencentPlayerController extends ValueNotifier<TencentPlayerValue> {
       final Map<dynamic, dynamic> map = event;
       switch (map['event']) {
         case 'initialized':
-          value = value.copyWith(
+          value = value?.copyWith(
             duration: Duration(milliseconds: map['duration']),
             size: Size(map['width']?.toDouble() ?? 0.0, map['height']?.toDouble() ?? 0.0),
             degree: map['degree'] ?? 0,
@@ -74,31 +74,31 @@ class TencentPlayerController extends ValueNotifier<TencentPlayerValue> {
           if (!value.isPlaying) return;
           Duration newProgress = Duration(milliseconds: map['progress']);
           Duration newPlayable = Duration(milliseconds: map['playable']);
-          if (value.position == newProgress && value.playable == newPlayable) return;
-          value = value.copyWith(
+          if (value?.position == newProgress && value?.playable == newPlayable) return;
+          value = value?.copyWith(
             position: newProgress,
             duration: Duration(milliseconds: map['duration']),
             playable: newPlayable,
           );
           break;
         case 'loading':
-          value = value.copyWith(isLoading: true);
+          value = value?.copyWith(isLoading: true);
           break;
         case 'loadingend':
-          value = value.copyWith(isLoading: false);
+          value = value?.copyWith(isLoading: false);
           break;
         case 'playend':
-          value = value.copyWith(isPlaying: false, position: value.duration);
+          value = value?.copyWith(isPlaying: false, position: value?.duration);
           break;
         case 'netStatus':
-          if (value.netSpeed == map['netSpeed']) return;
-          value = value.copyWith(netSpeed: map['netSpeed']);
+          if (value?.netSpeed == map['netSpeed']) return;
+          value = value?.copyWith(netSpeed: map['netSpeed']);
           break;
         case 'error':
-          value = value.copyWith(errorDescription: map['errorInfo']);
+          value = value?.copyWith(errorDescription: map['errorInfo']);
           break;
         case 'orientation':
-          value = value.copyWith(orientation: map['orientation']);
+          value = value?.copyWith(orientation: map['orientation']);
           break;
       }
     }
